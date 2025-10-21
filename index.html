@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Tip Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+</head>
+<body>
+  <div class="wrapper">
+    <div class="calculator">
+      <h1><i class="fa-solid fa-calculator"></i> Smart Tip Calculator</h1>
+      <p class="subtitle">Enter your bills and see totals instantly</p>
+
+      <form>
+        <div class="input-group">
+          <label><i class="fa-solid fa-receipt"></i> Bill 1</label>
+          <input type="number" class="firstBill" placeholder="Enter amount (₦)" required />
+        </div>
+
+        <div class="input-group">
+          <label><i class="fa-solid fa-receipt"></i> Bill 2</label>
+          <input type="number" class="secondBill" placeholder="Enter amount (₦)" required />
+        </div>
+
+        <div class="input-group">
+          <label><i class="fa-solid fa-receipt"></i> Bill 3</label>
+          <input type="number" class="thirdBill" placeholder="Enter amount (₦)" required />
+        </div>
+
+        <button type="submit" class="calculate-btn">
+          <i class="fa-solid fa-equals"></i> Calculate
+        </button>
+      </form>
+
+      <div class="results">
+        <div class="result-card tipBill1"></div>
+        <div class="result-card tipBill2"></div>
+        <div class="result-card tipBill3"></div>
+      </div>
+
+      <p class="summary"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
