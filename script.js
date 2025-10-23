@@ -1,54 +1,46 @@
 const form = document.querySelector('form');
 
-form.addEventListener('submit', function (event) {
-  event.preventDefault();
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
 
   const bills = [
-    Number(document.querySelector('.firstBill').value),
-    Number(document.querySelector('.secondBill').value),
-    Number(document.querySelector('.thirdBill').value),
+    +document.querySelector('.firstBill').value,
+    +document.querySelector('.secondBill').value,
+    +document.querySelector('.thirdBill').value
   ];
 
-  const resultsContainer = document.querySelector('.results');
+  const resultsBox = document.querySelector('.results');
   const summary = document.querySelector('.summary');
 
-  // Clear old results
-  resultsContainer.innerHTML = '';
+  resultsBox.innerHTML = '';
 
-  const tips = bills.map((bill) => {
-    let tip = 0;
-
+  const tips = bills.map(bill => {
+    let tip;
     if (bill >= 50 && bill <= 300) {
       tip = Math.round(bill * 0.15);
     } else {
       tip = Math.round(bill * 0.2);
     }
-
     return tip;
   });
 
-  // Map bills and tips into divs
-  bills.forEach((bill, index) => {
-    const total = bill + tips[index];
-
+  bills.forEach((bill, i) => {
+    const total = bill + tips[i];
     const card = document.createElement('div');
-    card.classList.add('result-card', 'show');
-
+    card.className = 'result-card show';
     card.innerHTML = `
-      <p>Your total bill is: <strong>₦${total}</strong></p>
-      <p>Tip: <strong>₦${tips[index]}</strong></p>
+      <p>Total bill: <strong>₦${total}</strong></p>
+      <p>Tip: <strong>₦${tips[i]}</strong></p>
     `;
-
-    resultsContainer.appendChild(card);
+    resultsBox.appendChild(card);
   });
 
-  // Summary section
-  const totalBills = bills.reduce((a, b) => a + b, 0);
-  const totalTips = tips.reduce((a, b) => a + b, 0);
+  const totalBills = bills.reduce((sum, val) => sum + val, 0);
+  const totalTips = tips.reduce((sum, val) => sum + val, 0);
   const grandTotal = totalBills + totalTips;
 
   summary.innerHTML = `
-    Combined Total: <strong>₦${grandTotal}</strong> 
+    Total: <strong>₦${grandTotal}</strong> 
     (Bills: ₦${totalBills}, Tips: ₦${totalTips})
   `;
 });
